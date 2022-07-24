@@ -22,16 +22,53 @@ def computer_card_generator(first_card):
 
 os.system("clear")
 the_game_is_running = True
-def blackjack():
-    want_to_play = input("Do you want to play the 'BLACKJACK' game? type 'y' or 'n': ")
-    while want_to_play == "y":
+want_to_play = input("Do you want to play the 'BLACKJACK' game? type 'y' or 'n': ")
+def blackjack(): 
+
+    # player_replay = "y"
+
+    player_cards = player_card_generator()
+    computer_first_card = random.choice(cards)
+    computer_cards = computer_card_generator(computer_first_card)
+    computer_score = sum(computer_cards)
+    get_another_card = "y"
+    while get_another_card == 'y':
+        os.system("clear")
         print(logo)
-        player_cards = player_card_generator()
-        computer_cards = [random.choice(cards)]
-        
-        print(player_cards)
-        print(computer_cards)
+        player_score = sum(player_cards)
+        print(f"Your cards: {player_cards} , current score: {player_score}")
+        print(f"Computer's first cards: {computer_first_card}")
 
-        want_to_play = 'n'
+        if computer_score == 21 or player_score == 21:
+            get_another_card == "n"
+        else:
+            get_another_card = input("Type 'y' to get another card, type 'n' to pass: ")
 
-blackjack()
+            if get_another_card == 'y':
+                new_card = random.choice(cards)
+                player_cards.append(new_card)
+                player_score = sum(player_cards)
+                if player_score> 21:
+                    get_another_card = 'n'
+
+    print(f"Your final hand: {player_cards}, final score: {player_score}")
+    print(f"Computer's final hand: {computer_cards}, final score: {computer_score}")
+    
+    #The result:
+    if player_score == 21:
+        print("Win with a blackjack 😎")
+    elif abs(computer_score - 21 ) < abs(player_score - 21):
+        print("You lose 😭")
+    elif abs(computer_score - 21 ) == abs(player_score - 21):
+        print("It's a Draw")
+    else:
+        print("You win 😃")
+
+    player_replay = input("Do you want to play the 'BLACKJACK' game? type 'y' or 'n': ")
+    if player_replay == "y":
+        blackjack()
+    
+    
+if want_to_play == "y":        
+    blackjack()
+
