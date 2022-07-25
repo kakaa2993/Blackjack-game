@@ -10,7 +10,12 @@ def player_card_generator():
     player_cards = []
     new_card = random.choice(cards)
     player_cards.append(new_card)
-    player_cards.append(new_card)
+    player_cards.append(new_card)                
+    if sum(player_cards)> 21:
+        if 11 in player_cards:
+            player_cards.remove(11)
+            player_cards.append(1)
+
     return player_cards
 
 def computer_card_generator(first_card):
@@ -18,6 +23,11 @@ def computer_card_generator(first_card):
     while sum(computer_cards) < 17:
         new_card = random.choice(cards)
         computer_cards.append(new_card)
+        if sum(computer_cards)> 21:
+            if 11 in computer_cards:
+                computer_cards.remove(11)
+                computer_cards.append(1)
+    
     return computer_cards
 
 os.system("clear")
@@ -40,7 +50,7 @@ def blackjack():
         print(f"   Computer's first cards: {computer_first_card}")
 
         if computer_score == 21 or player_score == 21:
-            get_another_card == "n"
+            get_another_card = "n"
         else:
             get_another_card = input("Type 'y' to get another card, type 'n' to pass: ")
 
@@ -49,7 +59,11 @@ def blackjack():
                 player_cards.append(new_card)
                 player_score = sum(player_cards)
                 if player_score> 21:
-                    get_another_card = 'n'
+                    if 11 in player_cards:
+                        player_cards.remove(11)
+                        player_cards.append(1)
+                    else:
+                        get_another_card = 'n'
 
     print(f"Your final hand: {player_cards}, final score: {player_score}")
     print(f"Computer's final hand: {computer_cards}, final score: {computer_score}")
