@@ -7,6 +7,7 @@ import random
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
 def player_card_generator():
+    """create a list of cards for the player"""
     player_cards = []
     new_card = random.choice(cards)
     player_cards.append(new_card)
@@ -19,6 +20,7 @@ def player_card_generator():
     return player_cards
 
 def computer_card_generator(first_card):
+    """create a list of cards for the computer"""
     computer_cards = [first_card]
     while sum(computer_cards) < 17:
         new_card = random.choice(cards)
@@ -34,6 +36,7 @@ os.system('clear')
 the_game_is_running = True
 want_to_play = input("Do you want to play the 'BLACKJACK' game? type 'y' or 'n': ")
 def blackjack(): 
+    """the main game"""
     player_cards = player_card_generator()
     computer_first_card = random.choice(cards)
     computer_cards = computer_card_generator(computer_first_card)
