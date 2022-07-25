@@ -36,8 +36,8 @@ def blackjack():
         os.system("clear")
         print(logo)
         player_score = sum(player_cards)
-        print(f"Your cards: {player_cards} , current score: {player_score}")
-        print(f"Computer's first cards: {computer_first_card}")
+        print(f"   Your cards: {player_cards} , current score: {player_score}")
+        print(f"   Computer's first cards: {computer_first_card}")
 
         if computer_score == 21 or player_score == 21:
             get_another_card == "n"
