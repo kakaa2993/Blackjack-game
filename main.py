@@ -12,9 +12,9 @@ def player_card_generator():
     player_cards.append(new_card)
     player_cards.append(new_card)                
     if sum(player_cards)> 21:
-        if 11 in player_cards:
-            player_cards.remove(11)
-            player_cards.append(1)
+            if 11 in player_cards:
+                player_cards.remove(11)
+                player_cards.append(1)
 
     return player_cards
 
@@ -30,18 +30,16 @@ def computer_card_generator(first_card):
     
     return computer_cards
 
-os.system("clear")
+os.system('clear')
 the_game_is_running = True
 want_to_play = input("Do you want to play the 'BLACKJACK' game? type 'y' or 'n': ")
 def blackjack(): 
-
-    # player_replay = "y"
-
     player_cards = player_card_generator()
     computer_first_card = random.choice(cards)
     computer_cards = computer_card_generator(computer_first_card)
     computer_score = sum(computer_cards)
     get_another_card = "y"
+
     while get_another_card == 'y':
         os.system("clear")
         print(logo)
@@ -50,10 +48,9 @@ def blackjack():
         print(f"   Computer's first cards: {computer_first_card}")
 
         if computer_score == 21 or player_score == 21:
-            get_another_card = "n"
+            get_another_card == "n"
         else:
             get_another_card = input("Type 'y' to get another card, type 'n' to pass: ")
-
             if get_another_card == 'y':
                 new_card = random.choice(cards)
                 player_cards.append(new_card)
@@ -81,7 +78,6 @@ def blackjack():
     player_replay = input("Do you want to play the 'BLACKJACK' game? type 'y' or 'n': ")
     if player_replay == "y":
         blackjack()
-    
     
 if want_to_play == "y":        
     blackjack()
